@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href=" {% static 'bootstrap/css/bootstrap.css' %} ">
+    <link rel="stylesheet" href=" {% static 'css/custom.css' %} ">
+
+</head>
+<body>
+    <div class="container row space">
+        <form method="POST" action="/">
+            {% csrf_token %}
+                {{ form.title }}
+                <button type="submit" class="btn btn-sm-2 btn-success ">Save</button>
+        </form>
+    </div>
+
+    {% for task in tasks %}
+        <div class="container list-group-item col-12 bg-light">
+            <a class="btn btn-outline-danger ">Delete</a>
+            <a class="btn btn-outline-info  br" href="{% url 'update' task.id %}">Edit</a>
+            {{ task }}
+        </div>
+    {% endfor %}
+
+</body>
+</html>
+
