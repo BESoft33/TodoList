@@ -9,20 +9,37 @@
 
 </head>
 <body>
-    <div class="container row space">
-        <form method="POST" action="/">
+    <div class="space">
+        <form method="POST" action="/" class="container">
             {% csrf_token %}
                 {{ form.title }}
-                <button type="submit" class="btn btn-sm-2 btn-success ">Save</button>
+                <button type="submit" class="btn btn-success btn-lg">Save</button>
         </form>
     </div>
-
+    <hr>
     {% for task in tasks %}
-        <div class="container list-group-item col-12 bg-light">
-            <a class="btn btn-outline-danger ">Delete</a>
-            <a class="btn btn-outline-info  br" href="{% url 'update' task.id %}">Edit</a>
-            {{ task }}
+    <div class="container">
+        <div class=" list-group-item bg-light">
+        {% if task.completed %}
+            <strike>{{ task }}</strike>
+        {% else %}
+            <span>{{ task }}</span>
+        {% endif %}
         </div>
+        <div class=" list-group-item bg-light">
+            <a class="btn btn-outline-danger btn-md" href="{% url 'delete' task.id %}" name='delete'>Delete</a>
+            <a class="btn btn-outline-info  btn-md" href="{% url 'update' task.id %}" name='update'>Edit</a>
+            
+        {% if task.completed %}
+            <a class="btn btn-outline-secondary btn-md" href="{% url 'check' task.id %}" name='check'>Mark Incomplete</a>
+        {% else %}
+            <a class="btn btn-outline-success btn-md" href="{% url 'check' task.id %}" name='check'>Mark Complete</a>
+        {% endif %}
+        </div>
+
+
+    </div>
+    <br>
     {% endfor %}
 
 </body>
