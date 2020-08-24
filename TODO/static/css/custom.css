@@ -1,6 +1,18 @@
-.space{
+.space {
   margin: 2%;
 }
-.br{
+
+.br {
   margin-right: 1rem;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+input {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
