@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Assignment
 from .forms import AssignmentForm
 
+#Function based views
 
 def homepage(request):
     tasks = Assignment.objects.all()
